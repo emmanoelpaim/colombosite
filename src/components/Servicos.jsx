@@ -12,7 +12,7 @@ import Create from '@mui/icons-material/Create'
 import Groups from '@mui/icons-material/Groups'
 
 const services = [
-  { icon: <TrendingUp />, title: 'Gestão de Tráfego Pago', desc: 'Google Ads, Meta Ads e LinkedIn para captar leads e vendas.' },
+  { icon: <TrendingUp />, title: 'Gestão de Tráfego Pago', desc: 'Google e Meta Ads.' },
   { icon: <Search />, title: 'SEO', desc: 'Otimização para mecanismos de busca e crescimento orgânico.' },
   { icon: <Campaign />, title: 'Mídias Sociais', desc: 'Estratégia, conteúdo e gestão de redes para sua marca.' },
   { icon: <Analytics />, title: 'Analytics & BI', desc: 'Métricas, dashboards e relatórios para decisões baseadas em dados.' },

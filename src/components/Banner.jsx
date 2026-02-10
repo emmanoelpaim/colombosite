@@ -10,18 +10,21 @@ const slides = [
     subtitle: 'Estratégias de marketing digital com foco em resultados mensuráveis.',
     cta: 'Conheça nossos serviços',
     target: 'servicos',
+    image: `${import.meta.env.BASE_URL}img/banner1.jpeg`,
   },
   {
     title: 'Tráfego pago e orgânico que converte',
     subtitle: 'Google Ads, Meta Ads e SEO para levar mais clientes até você.',
     cta: 'Fale com a gente',
     target: 'contato',
+    image: `${import.meta.env.BASE_URL}img/banner2.jpeg`,
   },
   {
     title: 'Dados e criatividade trabalhando juntos',
     subtitle: 'Análise e conteúdo para decisões mais inteligentes.',
     cta: 'Saiba mais',
     target: 'servicos',
+    image: `${import.meta.env.BASE_URL}img/banner3.jpeg`,
   },
 ]
 
@@ -44,11 +47,15 @@ export default function Banner() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: `linear-gradient(135deg, ${alpha('#1B3F63', 0.92)} 0%, ${alpha('#2EC4B6', 0.85)} 100%)`,
         color: 'white',
         textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        backgroundImage: slide.image
+          ? `linear-gradient(135deg, ${alpha('#1B3F63', 0.88)} 0%, ${alpha('#1B3F63', 0.75)} 50%, ${alpha('#2EC4B6', 0.8)} 100%), url(${slide.image})`
+          : `linear-gradient(135deg, ${alpha('#1B3F63', 0.92)} 0%, ${alpha('#2EC4B6', 0.85)} 100%)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <Box sx={{ position: 'relative', zIndex: 1, maxWidth: 720 }}>

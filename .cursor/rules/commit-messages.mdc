@@ -1,0 +1,56 @@
+---
+description: Mensagens de commit em português - formato convencional
+alwaysApply: true
+---
+
+# Mensagens de Commit
+
+## Regra Obrigatória
+
+TODAS as mensagens de commit devem ser escritas em PORTUGUÊS.
+
+## Formato de Commit
+
+```
+<tipo>: <assunto>
+
+<corpo opcional>
+```
+
+## Tipos de Commit
+
+- `feat`: Nova funcionalidade
+- `fix`: Correção de bug
+- `docs`: Documentação
+- `style`: Formatação, ponto e vírgula faltando, etc
+- `refactor`: Refatoração de código
+- `perf`: Melhoria de performance
+- `test`: Adicionando testes
+- `chore`: Manutenção, atualização de dependências, etc
+- `build`: Mudanças no sistema de build
+- `ci`: Mudanças em CI/CD
+
+## Exemplos
+
+**CORRETO:**
+```
+feat: adiciona tela de perfil do usuário
+fix: corrige erro ao carregar lista de receitas
+refactor: reorganiza estrutura de pastas da feature auth
+docs: atualiza documentação de navegação
+chore: atualiza dependências do projeto
+```
+
+**ERRADO:**
+```
+feat: add user profile screen
+fix: fix error loading recipe list
+refactor: reorganize auth feature folder structure
+```
+
+## Diretrizes
+
+- SEMPRE escreva mensagens de commit em português
+- Use verbos no infinitivo (adiciona, corrige, atualiza, etc)
+- Seja claro e objetivo
+- Evite mensagens muito longas (máximo 72 caracteres no assunto)

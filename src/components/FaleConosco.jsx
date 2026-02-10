@@ -56,12 +56,8 @@ export default function FaleConosco() {
                 <Typography>contato@colombogrowthlab.com.br</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
-                <Phone color="secondary" />
-                <Typography>(00) 00000-0000</Typography>
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
                 <LocationOn color="secondary" />
-                <Typography>Sua cidade, UF</Typography>
+                <Typography>Rondinha, RS</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Instagram color="secondary" />

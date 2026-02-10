@@ -92,7 +92,7 @@
       a.click();
     };
 
-    fetch('/logo-original.png').then(r => r.blob()).then(blob => {
+    fetch('/img/logo-original.png').then(r => r.blob()).then(blob => {
       if (blob.size > 0) loadImage(URL.createObjectURL(blob));
     }).catch(() => { });
   </script>

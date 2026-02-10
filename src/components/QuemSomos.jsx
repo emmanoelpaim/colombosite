@@ -29,7 +29,7 @@ export default function QuemSomos() {
                 Somos um laboratório de crescimento: testamos, medimos e ajustamos campanhas e canais para que sua marca alcance mais pessoas e converta melhor. Trabalhamos com tráfego pago, SEO, redes sociais e análise de dados para entregar resultados que aparecem no seu faturamento.
               </Typography>
               <Typography variant="body1">
-                Nossa equipe combina experiência em agências, startups e grandes empresas, sempre com foco em simplicidade e eficiência.
+                Nossa equipe combina experiência em agências, sempre com foco em simplicidade e eficiência.
               </Typography>
             </Paper>
           </Grid>
