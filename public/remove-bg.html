@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Remover fundo - Colombo</title>
+  <style>
+    body {
+      font-family: system-ui;
+      padding: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    canvas {
+      border: 1px solid #ccc;
+      max-width: 100%;
+    }
+
+    button {
+      margin: 8px 8px 8px 0;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+
+    .preview {
+      margin-top: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Remover fundo branco</h1>
+  <p>Abra esta página com o servidor rodando (npm run dev) ou arraste a imagem abaixo.</p>
+  <input type="file" id="file" accept="image/png,image/jpeg" />
+  <div class="preview">
+    <canvas id="c"></canvas>
+  </div>
+  <div>
+    <button id="btnLogo">Baixar logo.png</button>
+    <button id="btnFavicon">Baixar favicon.png (32×32)</button>
+  </div>
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    const threshold = 245;
+
+    function removeWhite(img) {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      const d = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < d.data.length; i += 4) {
+        const r = d.data[i], g = d.data[i + 1], b = d.data[i + 2];
+        if (r >= threshold && g >= threshold && b >= threshold)
+          d.data[i + 3] = 0;
+      }
+      ctx.putImageData(d, 0, 0);
+    }
+
+    function loadImage(src) {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => { removeWhite(img); };
+      img.src = src;
+    }
+
+    document.getElementById('file').onchange = (e) => {
+      const f = e.target.files[0];
+      if (!f) return;
+      const r = new FileReader();
+      r.onload = () => loadImage(r.result);
+      r.readAsDataURL(f);
+    };
+
+    document.getElementById('btnLogo').onclick = () => {
+      const a = document.createElement('a');
+      a.download = 'logo.png';
+      a.href = canvas.toDataURL('image/png');
+      a.click();
+    };
+
+    document.getElementById('btnFavicon').onclick = () => {
+      const c2 = document.createElement('canvas');
+      c2.width = 32;
+      c2.height = 32;
+      const ctx2 = c2.getContext('2d');
+      ctx2.drawImage(canvas, 0, 0, 32, 32);
+      const a = document.createElement('a');
+      a.download = 'favicon.png';
+      a.href = c2.toDataURL('image/png');
+      a.click();
+    };
+
+    fetch('/logo-original.png').then(r => r.blob()).then(blob => {
+      if (blob.size > 0) loadImage(URL.createObjectURL(blob));
+    }).catch(() => { });
+  </script>
+</body>
+
+</html>
