@@ -9,16 +9,19 @@ const slides = [
     title: 'Aceleramos o crescimento do seu negócio',
     subtitle: 'Estratégias de marketing digital com foco em resultados mensuráveis.',
     cta: 'Conheça nossos serviços',
+    target: 'servicos',
   },
   {
     title: 'Tráfego pago e orgânico que converte',
     subtitle: 'Google Ads, Meta Ads e SEO para levar mais clientes até você.',
     cta: 'Fale com a gente',
+    target: 'contato',
   },
   {
     title: 'Dados e criatividade trabalhando juntos',
     subtitle: 'Análise e conteúdo para decisões mais inteligentes.',
     cta: 'Saiba mais',
+    target: 'servicos',
   },
 ]
 
@@ -58,8 +61,8 @@ export default function Banner() {
         <Button
           variant="contained"
           size="large"
-          href="#servicos"
-          onClick={(e) => { e.preventDefault(); document.getElementById('servicos')?.scrollIntoView({ behavior: 'smooth' }) }}
+          href={`#${slide.target}`}
+          onClick={(e) => { e.preventDefault(); document.getElementById(slide.target)?.scrollIntoView({ behavior: 'smooth' }) }}
           sx={{
             bgcolor: 'white',
             color: 'primary.main',

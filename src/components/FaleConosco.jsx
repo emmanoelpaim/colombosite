@@ -6,15 +6,30 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
+import Link from '@mui/material/Link'
+import Instagram from '@mui/icons-material/Instagram'
 import Email from '@mui/icons-material/Email'
 import Phone from '@mui/icons-material/Phone'
 import LocationOn from '@mui/icons-material/LocationOn'
+
+function maskTelefone(value) {
+  const digits = value.replace(/\D/g, '').slice(0, 11)
+  if (!digits.length) return ''
+  if (digits.length <= 2) return `(${digits}`
+  if (digits.length <= 7) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
+}
 
 export default function FaleConosco() {
   const [form, setForm] = useState({ nome: '', email: '', telefone: '', mensagem: '' })
 
   const handleChange = (e) => {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
+    const { name, value } = e.target
+    if (name === 'telefone') {
+      setForm((f) => ({ ...f, telefone: maskTelefone(value) }))
+      return
+    }
+    setForm((f) => ({ ...f, [name]: value }))
   }
 
   const handleSubmit = (e) => {
@@ -44,9 +59,15 @@ export default function FaleConosco() {
                 <Phone color="secondary" />
                 <Typography>(00) 00000-0000</Typography>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
                 <LocationOn color="secondary" />
                 <Typography>Sua cidade, UF</Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <Instagram color="secondary" />
+                <Link href="https://instagram.com/colombogrowthlab" target="_blank" rel="noopener noreferrer" color="text.secondary" underline="hover">
+                  @colombogrowthlab
+                </Link>
               </Box>
             </Paper>
           </Grid>
