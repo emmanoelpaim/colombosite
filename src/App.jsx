@@ -46,7 +46,7 @@ export default function App() {
         <Toolbar sx={{ justifyContent: 'space-between', py: 0.5 }}>
           <Box component="a" href="#" onClick={(e) => { e.preventDefault(); scrollTo('banner') }} sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
             {!logoError ? (
-              <img src="/logo.png" alt="Colombo Growth Lab" height={48} style={{ marginRight: 8 }} onError={() => setLogoError(true)} />
+              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Colombo Growth Lab" height={48} style={{ marginRight: 8 }} onError={() => setLogoError(true)} />
             ) : (
               <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 700 }}>Colombo Growth Lab</Typography>
             )}
