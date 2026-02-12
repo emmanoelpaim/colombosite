@@ -12,6 +12,8 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import useTheme from '@mui/material/styles/useTheme'
+import DarkMode from '@mui/icons-material/DarkMode'
+import LightMode from '@mui/icons-material/LightMode'
 import Banner from './components/Banner'
 import Servicos from './components/Servicos'
 import Planos from './components/Planos'
@@ -19,6 +21,7 @@ import Clientes from './components/Clientes'
 import QuemSomos from './components/QuemSomos'
 import NossaEquipe from './components/NossaEquipe'
 import FaleConosco from './components/FaleConosco'
+import { useThemeMode } from './ThemeContext'
 import MenuIcon from '@mui/icons-material/Menu'
 
 const navItems = [
@@ -39,33 +42,45 @@ function scrollTo(id) {
 export default function App() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [logoError, setLogoError] = useState(false)
+  const { mode, toggleMode } = useThemeMode()
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <>
-      <AppBar position="sticky" sx={{ bgcolor: 'white', color: 'primary.main', boxShadow: 2 }}>
+      <AppBar position="sticky" sx={{ bgcolor: 'background.paper', color: mode === 'dark' ? '#fff' : 'primary.main', boxShadow: 2 }}>
         <Toolbar sx={{ justifyContent: 'space-between', py: 0.5 }}>
           <Box component="a" href="#" onClick={(e) => { e.preventDefault(); scrollTo('banner') }} sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
             {!logoError ? (
-              <img src={`${import.meta.env.BASE_URL}img/logo.png`} alt="Colombo Growth Lab" height={48} style={{ marginRight: 8 }} onError={() => setLogoError(true)} />
+              <img
+                src={mode === 'dark' ? `${import.meta.env.BASE_URL}img/logodark.png` : `${import.meta.env.BASE_URL}img/logo.png`}
+                alt="Colombo Growth Lab"
+                height={48}
+                style={{ marginRight: 8 }}
+                onError={() => setLogoError(true)}
+              />
             ) : (
-              <Typography variant="h6" sx={{ color: 'primary.main', fontWeight: 700 }}>Colombo Growth Lab</Typography>
+              <Typography variant="h6" sx={{ color: 'inherit', fontWeight: 700 }}>Colombo Growth Lab</Typography>
             )}
           </Box>
-          {isMobile ? (
-            <IconButton color="inherit" onClick={() => setDrawerOpen(true)} aria-label="menu">
-              <MenuIcon />
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+            <IconButton color="inherit" onClick={toggleMode} aria-label={mode === 'light' ? 'Ativar tema escuro' : 'Ativar tema claro'}>
+              {mode === 'light' ? <DarkMode /> : <LightMode />}
             </IconButton>
-          ) : (
-            <Box sx={{ display: 'flex', gap: 0.5 }}>
-              {navItems.map((item) => (
-                <Button key={item.id} color="inherit" onClick={() => scrollTo(item.id)}>
-                  {item.label}
-                </Button>
-              ))}
-            </Box>
-          )}
+            {isMobile ? (
+              <IconButton color="inherit" onClick={() => setDrawerOpen(true)} aria-label="menu">
+                <MenuIcon />
+              </IconButton>
+            ) : (
+              <>
+                {navItems.map((item) => (
+                  <Button key={item.id} color="inherit" onClick={() => scrollTo(item.id)}>
+                    {item.label}
+                  </Button>
+                ))}
+              </>
+            )}
+          </Box>
         </Toolbar>
       </AppBar>
       <Drawer anchor="right" open={drawerOpen} onClose={() => setDrawerOpen(false)}>

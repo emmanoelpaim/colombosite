@@ -14,9 +14,9 @@ const values = [
 
 export default function QuemSomos() {
   return (
-    <Box sx={{ py: 8, bgcolor: '#fff' }}>
+    <Box sx={{ py: 8, bgcolor: 'background.paper' }}>
       <Container>
-        <Typography variant="h4" align="center" color="primary" fontWeight={700} gutterBottom>
+        <Typography variant="h4" align="center" fontWeight={700} gutterBottom sx={{ color: (theme) => theme.palette.mode === 'dark' ? '#fff' : 'primary.main' }}>
           Quem Somos
         </Typography>
         <Typography variant="body1" align="center" color="text.secondary" sx={{ maxWidth: 640, mx: 'auto', mb: 4 }}>

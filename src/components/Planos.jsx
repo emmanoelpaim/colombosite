@@ -6,6 +6,9 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 
 export default function Planos() {
+  const discountPercent = 50
+  const parsePrice = (str) => parseInt(str.replace(/[^\d]/g, ''), 10)
+  const formatPrice = (num) => `R$ ${num.toLocaleString('pt-BR')}/mês`
   const plans = [
     {
       title: 'Starter Content',
@@ -69,9 +72,9 @@ export default function Planos() {
   ]
 
   return (
-    <Box sx={{ py: 8, bgcolor: '#fff' }}>
+    <Box sx={{ py: 8, bgcolor: 'background.paper' }}>
       <Container>
-        <Typography variant="h4" align="center" color="primary" fontWeight={700} gutterBottom>
+        <Typography variant="h4" align="center" fontWeight={700} gutterBottom sx={{ color: (theme) => theme.palette.mode === 'dark' ? '#fff' : 'primary.main' }}>
           Planos
         </Typography>
         <Typography variant="body1" align="center" color="text.secondary" sx={{ maxWidth: 560, mx: 'auto', mb: 4 }}>
@@ -80,52 +83,84 @@ export default function Planos() {
         <Grid container spacing={3}>
           {plans.map((plan, index) => (
             <Grid item xs={12} sm={6} md={3} key={index}>
-              <Card
-                sx={{
-                  height: '100%',
-                  borderTop: 3,
-                  borderColor: plan.highlight ? 'secondary.main' : 'divider',
-                  boxShadow: plan.highlight ? 4 : 1,
-                  transform: plan.highlight ? 'translateY(-4px)' : 'none',
-                  transition: 'transform 0.2s, box-shadow 0.2s'
-                }}
-              >
-                <CardContent>
-                  {plan.tag && (
-                    <Typography variant="overline" color="secondary.main">
-                      {plan.tag}
-                    </Typography>
-                  )}
-                  <Typography variant="h6" gutterBottom>
-                    {plan.title}
+              <Box sx={{ position: 'relative', height: '100%', overflow: 'hidden', borderRadius: '12px' }}>
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: 20,
+                    right: -36,
+                    width: 140,
+                    height: 28,
+                    bgcolor: 'secondary.main',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transform: 'rotate(45deg)',
+                    zIndex: 2
+                  }}
+                >
+                  <Typography sx={{ color: '#fff', fontWeight: 700, fontSize: '0.75rem' }}>
+                    {discountPercent}% OFF
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    A partir de
-                  </Typography>
-                  <Typography variant="h5" color="primary" fontWeight={700} gutterBottom>
-                    {plan.price}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" gutterBottom>
-                    {plan.description}
-                  </Typography>
-                  <Box component="ul" sx={{ pl: 2, my: 2 }}>
-                    {plan.includes.map((item, i) => (
-                      <Typography key={i} component="li" variant="body2">
-                        {item}
+                </Box>
+                <Card
+                  sx={{
+                    height: '100%',
+                    border: '1px solid',
+                    borderTopWidth: 3,
+                    borderRadius: '12px',
+                    borderColor: plan.highlight ? 'secondary.main' : 'divider',
+                    boxShadow: (theme) => theme.palette.mode === 'dark'
+                      ? '0 8px 32px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08)'
+                      : '0 12px 40px rgba(27, 63, 99, 0.18), 0 2px 8px rgba(0,0,0,0.08)',
+                    transition: 'transform 0.2s, box-shadow 0.2s'
+                  }}
+                >
+                  <CardContent>
+                    {plan.tag && (
+                      <Typography variant="overline" color="secondary.main">
+                        {plan.tag}
                       </Typography>
-                    ))}
-                  </Box>
-                  {plan.frequency && (
-                    <Typography variant="body2" color="text.secondary">
-                      {plan.frequency}
+                    )}
+                    <Typography variant="h6" gutterBottom>
+                      {plan.title}
                     </Typography>
-                  )}
-                </CardContent>
-              </Card>
+                    <Typography variant="body2" color="text.secondary">
+                      De
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ textDecoration: 'line-through' }}>
+                      {plan.price}
+                    </Typography>
+                    <Box component="p" sx={{ m: 0, mb: 1 }}>
+                      <Typography component="span" variant="body2" color="text.secondary" sx={{ mr: 0.5 }}>
+                        por
+                      </Typography>
+                      <Typography component="span" variant="h5" fontWeight={700} sx={{ color: (theme) => theme.palette.mode === 'dark' ? '#fff' : 'primary.main' }}>
+                        {formatPrice(Math.round(parsePrice(plan.price) * (1 - discountPercent / 100)))}
+                      </Typography>
+                    </Box>
+                    <Typography variant="body2" color="text.secondary" gutterBottom>
+                      {plan.description}
+                    </Typography>
+                    <Box component="ul" sx={{ pl: 2, my: 2 }}>
+                      {plan.includes.map((item, i) => (
+                        <Typography key={i} component="li" variant="body2">
+                          {item}
+                        </Typography>
+                      ))}
+                    </Box>
+                    {plan.frequency && (
+                      <Typography variant="body2" color="text.secondary">
+                        {plan.frequency}
+                      </Typography>
+                    )}
+                  </CardContent>
+                </Card>
+              </Box>
             </Grid>
           ))}
         </Grid>
       </Container>
-    </Box>
+    </Box >
   )
 }

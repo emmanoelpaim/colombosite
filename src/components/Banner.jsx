@@ -71,9 +71,8 @@ export default function Banner() {
           href={`#${slide.target}`}
           onClick={(e) => { e.preventDefault(); document.getElementById(slide.target)?.scrollIntoView({ behavior: 'smooth' }) }}
           sx={{
-            bgcolor: 'white',
-            color: 'primary.main',
-            '&:hover': { bgcolor: 'grey.100' },
+            bgcolor: 'background.paper',
+            color: (theme) => theme.palette.mode === 'dark' ? '#fff' : 'primary.main',
           }}
         >
           {slide.cta}
@@ -97,7 +96,7 @@ export default function Banner() {
               width: 10,
               height: 10,
               borderRadius: '50%',
-              bgcolor: index === i ? 'white' : alpha('#fff', 0.5),
+              bgcolor: (theme) => index === i ? theme.palette.background.paper : alpha(theme.palette.background.paper, 0.5),
               cursor: 'pointer',
               transition: 'all 0.2s',
             }}

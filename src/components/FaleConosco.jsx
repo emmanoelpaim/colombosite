@@ -64,9 +64,9 @@ export default function FaleConosco() {
   }
 
   return (
-    <Box sx={{ py: 8, bgcolor: '#fff' }}>
+    <Box sx={{ py: 8, bgcolor: 'background.paper' }}>
       <Container>
-        <Typography variant="h4" align="center" color="primary" fontWeight={700} gutterBottom>
+        <Typography variant="h4" align="center" fontWeight={700} gutterBottom sx={{ color: (theme) => theme.palette.mode === 'dark' ? '#fff' : 'primary.main' }}>
           Fale Conosco
         </Typography>
         <Typography variant="body1" align="center" color="text.secondary" sx={{ maxWidth: 560, mx: 'auto', mb: 4 }}>
@@ -75,7 +75,7 @@ export default function FaleConosco() {
         <Grid container spacing={4}>
           <Grid item xs={12} md={5}>
             <Paper sx={{ p: 3, height: '100%' }}>
-              <Typography variant="h6" color="primary" gutterBottom>
+              <Typography variant="h6" gutterBottom sx={{ color: (theme) => theme.palette.mode === 'dark' ? '#fff' : 'primary.main' }}>
                 Contato
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>

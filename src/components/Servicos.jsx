@@ -78,9 +78,9 @@ export default function Servicos() {
   }
 
   return (
-    <Box sx={{ py: 8, bgcolor: '#f5f5f5' }}>
+    <Box sx={{ py: 8, bgcolor: 'background.default' }}>
       <Container>
-        <Typography variant="h4" align="center" color="primary" fontWeight={700} gutterBottom>
+        <Typography variant="h4" align="center" fontWeight={700} gutterBottom sx={{ color: (theme) => theme.palette.mode === 'dark' ? '#fff' : 'primary.main' }}>
           Nossos Serviços
         </Typography>
         <Typography variant="body1" align="center" color="text.secondary" sx={{ maxWidth: 560, mx: 'auto', mb: 4 }}>
