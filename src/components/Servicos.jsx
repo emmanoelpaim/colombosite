@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
+import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Close from '@mui/icons-material/Close'
 import TrendingUp from '@mui/icons-material/TrendingUp'
@@ -99,14 +100,27 @@ export default function Servicos() {
                   '&:hover': { transform: 'translateY(-4px)', boxShadow: 4 }
                 }}
               >
-                <CardContent sx={{ '& .MuiSvgIcon-root': { fontSize: 40, color: 'secondary.main', mb: 1 } }}>
+                <CardContent sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  '& .MuiSvgIcon-root': { fontSize: 40, color: 'secondary.main', mb: 1 }
+                }}>
                   {s.icon}
                   <Typography variant="h6" gutterBottom>
                     {s.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color="text.secondary" sx={{ flex: 1, mb: 2 }}>
                     {s.desc}
                   </Typography>
+                  <Button
+                    variant="outlined"
+                    color="secondary"
+                    size="small"
+                    onClick={(e) => { e.stopPropagation(); handleOpen(s); }}
+                  >
+                    Saiba mais
+                  </Button>
                 </CardContent>
               </Card>
             </Grid>
@@ -129,7 +143,7 @@ export default function Servicos() {
         </DialogTitle>
         <DialogContent dividers>
           {selected && (
-            <Typography variant="body1" color="text.secondary" sx={{ whiteSpace: 'pre-line' }}>
+            <Typography variant="body1" color="text.secondary" sx={{ whiteSpace: 'pre-line', textAlign: 'justify' }}>
               {selected.detail}
             </Typography>
           )}

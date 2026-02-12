@@ -22,6 +22,8 @@ function maskTelefone(value) {
 
 export default function FaleConosco() {
   const [form, setForm] = useState({ nome: '', email: '', telefone: '', mensagem: '' })
+  const [status, setStatus] = useState({ tipo: null, texto: '' })
+  const [enviando, setEnviando] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -32,8 +34,33 @@ export default function FaleConosco() {
     setForm((f) => ({ ...f, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setStatus({ tipo: null, texto: '' })
+    setEnviando(true)
+    try {
+      const res = await fetch('/api/contato', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+      let data
+      try {
+        data = await res.json()
+      } catch {
+        data = { ok: false, erro: 'Erro ao processar resposta do servidor.' }
+      }
+      if (data.ok) {
+        setStatus({ tipo: 'sucesso', texto: 'Mensagem enviada com sucesso. Retornaremos em breve!' })
+        setForm({ nome: '', email: '', telefone: '', mensagem: '' })
+      } else {
+        setStatus({ tipo: 'erro', texto: data.erro || 'Erro ao enviar. Tente novamente.' })
+      }
+    } catch {
+      setStatus({ tipo: 'erro', texto: 'Erro de conexão. Verifique se o servidor está rodando.' })
+    } finally {
+      setEnviando(false)
+    }
   }
 
   return (
@@ -82,9 +109,16 @@ export default function FaleConosco() {
                 <Grid item xs={12}>
                   <TextField fullWidth label="Mensagem" name="mensagem" value={form.mensagem} onChange={handleChange} multiline rows={4} required />
                 </Grid>
+                {status.texto && (
+                  <Grid item xs={12}>
+                    <Typography color={status.tipo === 'sucesso' ? 'success.main' : 'error.main'}>
+                      {status.texto}
+                    </Typography>
+                  </Grid>
+                )}
                 <Grid item xs={12}>
-                  <Button type="submit" variant="contained" size="large" sx={{ bgcolor: 'secondary.main', '&:hover': { bgcolor: 'secondary.dark' } }}>
-                    Enviar mensagem
+                  <Button type="submit" variant="contained" size="large" disabled={enviando} sx={{ bgcolor: 'secondary.main', '&:hover': { bgcolor: 'secondary.dark' } }}>
+                    {enviando ? 'Enviando...' : 'Enviar mensagem'}
                   </Button>
                 </Grid>
               </Grid>
