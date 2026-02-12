@@ -7,7 +7,7 @@ import CardContent from '@mui/material/CardContent'
 import Avatar from '@mui/material/Avatar'
 
 const team = [
-  { name: 'Luana Colombo', role: 'Gestão e Atendimento ao Cliente', initials: 'N1' },
+  { name: 'Luana Colombo', role: 'Gestão & Atendimento ao Cliente', initials: 'N1' },
   { name: 'Larissa Mença', role: 'Criativo & Conteúdo', initials: 'N2' },
   { name: 'Emmanoel Paim', role: 'Desenvolvimento de Aplicações', initials: 'N3' },
 ]
