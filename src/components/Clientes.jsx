@@ -23,6 +23,30 @@ const clientes = [
     imgurl: 'img/alegra.jpg',
     url: 'https://www.instagram.com/ale.grakids',
   },
+  {
+    nome: 'Cubo Play',
+    depoimento: 'A Colombo Growth Lab nos ajudou a fortalecer nossa presença nas redes e a alcançar mais famílias. Resultados que falam por si.',
+    handle: '@cubo.play',
+    username: 'cubo.play',
+    imgurl: 'img/cubo.jpg',
+    url: 'https://cuboplay.com.br/',
+  },
+  {
+    nome: 'Realizar Financiamentos',
+    depoimento: 'Ganhamos credibilidade e visibilidade no digital. A estratégia da Colombo Growth Lab trouxe mais oportunidades e clientes qualificados.',
+    handle: '@realizarfinanciamentos',
+    username: 'realizarfinanciamentos',
+    imgurl: 'img/realizar.jpg',
+    url: 'https://realizarfinanciamentos.com.br/',
+  },
+  {
+    nome: 'Comer Bem',
+    depoimento: 'A divulgação do nosso app nas redes ganhou outro nível. Mais pessoas conhecem o Comer Bem e baixam o aplicativo graças ao trabalho da equipe.',
+    handle: '',
+    username: 'comerbem',
+    imgurl: 'img/comerbem.webp',
+    url: 'https://play.google.com/store/apps/details?id=br.com.comerbem.app&hl=pt_BR',
+  },
 ]
 
 export default function Clientes() {
@@ -82,7 +106,7 @@ export default function Clientes() {
                       {cliente.handle}
                     </Typography>
                     <Typography variant="caption" color="primary" sx={{ mt: 1, display: 'block' }}>
-                      Ver no Instagram →
+                      Ver mais →
                     </Typography>
                   </CardContent>
                 </CardActionArea>
