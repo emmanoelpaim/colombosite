@@ -16,43 +16,50 @@ import Campaign from '@mui/icons-material/Campaign'
 import Analytics from '@mui/icons-material/Analytics'
 import Create from '@mui/icons-material/Create'
 import Groups from '@mui/icons-material/Groups'
+import { Laptop } from '@mui/icons-material'
 
 const services = [
-  {
+  /*{
     icon: <TrendingUp />,
     title: 'Gestão de Tráfego Pago',
     desc: 'Google e Meta Ads.',
     detail: 'Tráfego pago é a geração de visitas por anúncios em plataformas digitais, com visibilidade imediata e controle sobre público, orçamento e monitoramento em tempo real. No Google Ads trabalhamos com intenção de busca (pesquisa, YouTube e rede de display) para capturar quem já busca seu produto ou serviço. No Meta Ads (Facebook e Instagram) usamos interesses e comportamentos para engajamento, reconhecimento de marca e criação de demanda. Nossa abordagem inclui definição de objetivos (leads, conversões, branding), segmentação precisa, criativos atrativos, testes A/B e acompanhamento de CPC, CTR, conversão e ROI. A combinação das duas plataformas forma um funil eficaz: Meta gera tráfego e leads; Google converte quem está pronto para comprar.'
-  },
-  {
+  },*/
+  /*{
     icon: <Search />,
     title: 'SEO',
     desc: 'Otimização para mecanismos de busca e crescimento orgânico.',
     detail: 'SEO melhora o posicionamento do seu site nos resultados orgânicos dos buscadores, atraindo tráfego qualificado e sustentável. Trabalhamos SEO on-page (títulos, meta descrições, cabeçalhos, imagens e conteúdo), off-page (link building e autoridade de domínio) e técnico (velocidade, responsividade, URLs e segurança). Usamos pesquisa de palavras-chave em camadas, termos de cauda longa e análise de intenção de busca. Acompanhamos com Google Analytics 4 e Search Console. Empresas na primeira página do Google capturam a maior parte do tráfego de pesquisa; nosso foco é levar sua marca para lá com resultados de longo prazo.'
-  },
+  },*/
   {
     icon: <Campaign />,
     title: 'Mídias Sociais',
     desc: 'Estratégia, conteúdo e gestão de redes para sua marca.',
     detail: 'Gestão de redes sociais é planejar, executar e avaliar a presença da sua marca nas plataformas digitais. Definimos objetivos SMART, identidade da marca e personas para escolher os canais certos. Montamos calendário de conteúdo alinhado à sua voz e valores. O conteúdo é informativo, atraente e consistente entre as redes. Monitoramos publicações, interações e métricas para ajustar a estratégia com base em dados. O resultado é maior reconhecimento, engajamento e uma presença digital que reflete sua empresa.'
   },
-  {
+  /*{
     icon: <Analytics />,
     title: 'Analytics & BI',
     desc: 'Métricas, dashboards e relatórios para decisões baseadas em dados.',
     detail: 'Analytics e BI vão além de relatórios: integramos dados de várias fontes para explicar o "por que" e indicar o "o que fazer". Construímos dashboards interativos e atualizados que funcionam como painel de controle: KPIs críticos, filtros por canal e período, visualizações claras e alertas quando os números saem da faixa. Oferecemos visão executiva (receita e crescimento), operacional (campanhas e canais) e analítica (diagnóstico de causas). A partir do seu objetivo estratégico definimos KPIs, indicadores de apoio e métricas operacionais. Com isso você toma decisões com base em dados, aloca orçamento nos canais certos e acompanha ROI, CAC e conversão.'
-  },
+  },*/
   {
     icon: <Create />,
     title: 'Content Marketing',
     desc: 'Produção de conteúdo que engaja e converte.',
-    detail: 'Content marketing é a criação e distribuição de materiais relevantes para atrair, engajar e converter seu público. A estratégia se baseia em educação e confiança, não só em propaganda. Conhecemos a fundo o público: desejos, dores e comportamentos. Produzimos com base em dados (Analytics, tendências) e em formatos que performam: vídeos curtos, podcasts, conteúdos interativos e infográficos. Alinhamos o conteúdo à jornada de compra (atração, leads ou conversão) e distribuímos de forma estratégica com SEO e redes sociais. Conteúdo de qualidade gera mais leads a um custo menor e constrói relacionamento de longo prazo.'
+    detail: 'Content marketing é a criação e distribuição de materiais relevantes para atrair, engajar e converter seu público. A estratégia se baseia em educação e confiança, não só em propaganda. Conhecemos a fundo o público: desejos, dores e comportamentos. Produzimos com base em dados e em formatos que performam: vídeos curtos, podcasts, conteúdos interativos e infográficos. Alinhamos o conteúdo à jornada de compra (atração, leads ou conversão) e distribuímos de forma estratégica com redes sociais. Conteúdo de qualidade gera mais leads a um custo menor e constrói relacionamento de longo prazo.'
   },
   {
     icon: <Groups />,
     title: 'Consultoria',
     desc: 'Diagnóstico e planejamento de marketing digital sob medida.',
-    detail: 'A consultoria é para empresas que querem clareza sobre onde estão e para onde ir no digital. Fazemos reunião inicial para entender problemas e contexto; em seguida, análise técnica de posicionamento, site, SEO, Google Ads, Meta Ads e inbound. O diagnóstico identifica pontos fortes, fracos e oportunidades. Entregamos plano de ação priorizado, relatórios com insights acionáveis e, quando desejado, cronograma, linha editorial e acompanhamento. Tudo adaptado ao estágio, orçamento e objetivos da sua empresa, sem fórmulas prontas.'
+    detail: 'A consultoria é para empresas que querem clareza sobre onde estão e para onde ir no digital. Fazemos reunião inicial para entender problemas e contexto; em seguida, análise técnica de posicionamento. O diagnóstico identifica pontos fortes, fracos e oportunidades. Entregamos plano de ação priorizado, cronograma, linha editorial e acompanhamento. Tudo adaptado ao estágio, orçamento e objetivos da sua empresa, sem fórmulas prontas.'
+  },
+  {
+    icon: <Laptop />,
+    title: 'Desenvolvimento de aplicações',
+    desc: 'Desenvolvimento de aplicativos, sistemas web e soluções digitais sob medida.',
+    detail: 'Desenvolvemos aplicativos e aplicações digitais focadas em resolver problemas reais do seu negócio. Atuamos desde a definição do escopo e das funcionalidades até o design das telas e a implementação técnica, sempre priorizando usabilidade, performance e segurança. Criamos painéis, sistemas internos, automações e integrações com outras ferramentas, além de aplicativos que funcionam bem em qualquer dispositivo. Nosso objetivo é transformar processos manuais em fluxos digitais simples, reduzir retrabalho e gerar mais eficiência para sua operação.'
   }
 ]
 
@@ -70,7 +77,7 @@ export default function Servicos() {
   }
 
   return (
-    <Box sx={{ py: 8, bgcolor: 'background.default' }}>
+    <Box sx={{ py: 8, bgcolor: '#f5f5f5' }}>
       <Container>
         <Typography variant="h4" align="center" color="primary" fontWeight={700} gutterBottom>
           Nossos Serviços

@@ -14,6 +14,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import useTheme from '@mui/material/styles/useTheme'
 import Banner from './components/Banner'
 import Servicos from './components/Servicos'
+import Planos from './components/Planos'
 import Clientes from './components/Clientes'
 import QuemSomos from './components/QuemSomos'
 import NossaEquipe from './components/NossaEquipe'
@@ -23,6 +24,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 const navItems = [
   { id: 'banner', label: 'Início' },
   { id: 'servicos', label: 'Nossos Serviços' },
+  { id: 'planos', label: 'Planos' },
   { id: 'clientes', label: 'Nossos Clientes' },
   { id: 'quem-somos', label: 'Quem Somos' },
   { id: 'equipe', label: 'Nossa Equipe' },
@@ -83,6 +85,9 @@ export default function App() {
         </section>
         <section id="servicos">
           <Servicos />
+        </section>
+        <section id="planos">
+          <Planos />
         </section>
         <section id="clientes">
           <Clientes />

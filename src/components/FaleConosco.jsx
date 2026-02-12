@@ -37,7 +37,7 @@ export default function FaleConosco() {
   }
 
   return (
-    <Box sx={{ py: 8, bgcolor: 'background.default' }}>
+    <Box sx={{ py: 8, bgcolor: '#fff' }}>
       <Container>
         <Typography variant="h4" align="center" color="primary" fontWeight={700} gutterBottom>
           Fale Conosco

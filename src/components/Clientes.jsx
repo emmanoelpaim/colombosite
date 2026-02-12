@@ -10,7 +10,7 @@ const logos = [
 
 export default function Clientes() {
   return (
-    <Box sx={{ py: 8, bgcolor: 'background.paper' }}>
+    <Box sx={{ py: 8, bgcolor: '#f5f5f5' }}>
       <Container>
         <Typography variant="h4" align="center" color="primary" fontWeight={700} gutterBottom>
           Nossos Clientes

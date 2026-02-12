@@ -14,7 +14,7 @@ const team = [
 
 export default function NossaEquipe() {
   return (
-    <Box sx={{ py: 8, bgcolor: 'background.paper' }}>
+    <Box sx={{ py: 8, bgcolor: '#f5f5f5' }}>
       <Container>
         <Typography variant="h4" align="center" color="primary" fontWeight={700} gutterBottom>
           Nossa Equipe
