@@ -39,6 +39,15 @@ const team = [
     bio: 'Desenvolve soluções digitais e aplicações que tornam os processos das marcas mais eficientes e escaláveis.',
     skills: 'Desenvolvimento · Tecnologia · Inovação',
   },
+  {
+    name: 'Douglas Colombo',
+    role: 'Desenvolvimento de Aplicações',
+    initials: 'DC',
+    avatar: 'img/douglas.jpeg',
+    linkedIn: 'https://www.linkedin.com/in/douglas-colombo-51a75416a/',
+    bio: 'Desenvolve soluções digitais e aplicações que tornam os processos das marcas mais eficientes e escaláveis.',
+    skills: 'Desenvolvimento · Tecnologia · Inovação',
+  },
 ]
 
 export default function NossaEquipe() {
@@ -55,7 +64,7 @@ export default function NossaEquipe() {
         </Typography>
         <Grid container spacing={3} justifyContent="center">
           {team.map((p, i) => (
-            <Grid item xs={12} sm={6} md={4} key={i}>
+            <Grid item xs={12} sm={6} md={3} key={i}>
               <Card
                 sx={{
                   textAlign: 'center',
