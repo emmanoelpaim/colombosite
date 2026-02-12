@@ -87,7 +87,7 @@ export default function Servicos() {
         </Typography>
         <Grid container spacing={3}>
           {services.map((s, i) => (
-            <Grid item xs={12} sm={6} md={4} key={i}>
+            <Grid item xs={12} sm={6} md={3} key={i}>
               <Card
                 onClick={() => handleOpen(s)}
                 sx={{

@@ -7,9 +7,9 @@ import CardContent from '@mui/material/CardContent'
 import Avatar from '@mui/material/Avatar'
 
 const team = [
-  { name: 'Nome do Sócio 1', role: 'Estratégia & Gestão', initials: 'N1' },
-  { name: 'Nome do Sócio 2', role: 'Tráfego & Performance', initials: 'N2' },
-  { name: 'Nome do Sócio 3', role: 'Criativo & Conteúdo', initials: 'N3' },
+  { name: 'Luana Colombo', role: 'Gestão e Atendimento ao Cliente', initials: 'N1' },
+  { name: 'Larissa Mença', role: 'Criativo & Conteúdo', initials: 'N2' },
+  { name: 'Emmanoel Paim', role: 'Desenvolvimento de Aplicações', initials: 'N3' },
 ]
 
 export default function NossaEquipe() {

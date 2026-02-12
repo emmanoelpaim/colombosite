@@ -26,10 +26,10 @@ export default function QuemSomos() {
           <Grid item xs={12} md={6}>
             <Paper sx={{ p: 3, height: '100%' }}>
               <Typography variant="body1" paragraph>
-                Somos um laboratório de crescimento: testamos, medimos e ajustamos campanhas e canais para que sua marca alcance mais pessoas e converta melhor. Trabalhamos com tráfego pago, SEO, redes sociais e análise de dados para entregar resultados que aparecem no seu faturamento.
+                Somos um laboratório de crescimento: testamos, medimos e ajustamos campanhas e canais para que sua marca alcance mais pessoas e converta melhor. Trabalhamos com redes sociais, desenvolvimento de aplicações e análise de dados para entregar resultados que aparecem no seu faturamento.
               </Typography>
               <Typography variant="body1">
-                Nossa equipe combina experiência em agências, sempre com foco em simplicidade e eficiência.
+                Nossa equipe combina experiência em agências, empresas e atendimento ao cliente, sempre com foco em simplicidade e eficiência.
               </Typography>
             </Paper>
           </Grid>

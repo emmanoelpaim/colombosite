@@ -57,7 +57,7 @@ export default function FaleConosco() {
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
                 <LocationOn color="secondary" />
-                <Typography>Rondinha, RS</Typography>
+                <Typography>Rio Grande do Sul, Brasil</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Instagram color="secondary" />
