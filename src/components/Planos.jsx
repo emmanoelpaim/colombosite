@@ -75,7 +75,7 @@ export default function Planos() {
           Planos
         </Typography>
         <Typography variant="body1" align="center" color="text.secondary" sx={{ maxWidth: 560, mx: 'auto', mb: 4 }}>
-          Planos e investimentos sob medida para o seu negócio. Entre em contato que vamos te ajudar a escolher o melhor plano para o seu negócio.
+          Planos e investimentos sob medida para o seu negócio. Entre em contato que vamos te ajudar a escolher o melhor plano.
         </Typography>
         <Grid container spacing={3}>
           {plans.map((plan, index) => (
