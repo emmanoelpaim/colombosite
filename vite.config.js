@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/flowup/',
+  base: '/colombosite/',
   plugins: [react()],
   server: {
     proxy: {
