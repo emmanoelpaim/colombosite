@@ -20,7 +20,7 @@ export default function QuemSomos() {
           Quem Somos
         </Typography>
         <Typography variant="body1" align="center" color="text.secondary" sx={{ maxWidth: 640, mx: 'auto', mb: 4 }}>
-          A Colombo Growth Lab nasceu da vontade de unir estratégia, criatividade e tecnologia para gerar crescimento real para negócios.
+          A FlowUp nasceu da vontade de unir estratégia, criatividade e tecnologia para gerar crescimento real para negócios.
         </Typography>
         <Grid container spacing={4} alignItems="center">
           <Grid item xs={12} md={6}>

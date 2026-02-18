@@ -53,14 +53,14 @@ export default function App() {
           <Box component="a" href="#" onClick={(e) => { e.preventDefault(); scrollTo('banner') }} sx={{ display: 'flex', alignItems: 'center', textDecoration: 'none', color: 'inherit' }}>
             {!logoError ? (
               <img
-                src={mode === 'dark' ? `${import.meta.env.BASE_URL}img/logodark.png` : `${import.meta.env.BASE_URL}img/logo.png`}
-                alt="Colombo Growth Lab"
+                src={mode === 'dark' ? `${import.meta.env.BASE_URL}img/logo.png` : `${import.meta.env.BASE_URL}img/logo.png`}
+                alt="FlowUp"
                 height={48}
                 style={{ marginRight: 8 }}
                 onError={() => setLogoError(true)}
               />
             ) : (
-              <Typography variant="h6" sx={{ color: 'inherit', fontWeight: 700 }}>Colombo Growth Lab</Typography>
+              <Typography variant="h6" sx={{ color: 'inherit', fontWeight: 700 }}>FlowUp</Typography>
             )}
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>

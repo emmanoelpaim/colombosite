@@ -91,7 +91,7 @@ export default function Planos() {
                     right: -36,
                     width: 140,
                     height: 28,
-                    bgcolor: 'secondary.main',
+                    bgcolor: 'primary.main',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -118,7 +118,7 @@ export default function Planos() {
                 >
                   <CardContent>
                     {plan.tag && (
-                      <Typography variant="overline" color="secondary.main">
+                      <Typography variant="overline" color="primary.light">
                         {plan.tag}
                       </Typography>
                     )}

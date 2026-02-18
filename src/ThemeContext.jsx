@@ -4,7 +4,7 @@ import getTheme from './theme'
 
 const ThemeContext = createContext({ mode: 'light', toggleMode: () => { } })
 
-const STORAGE_KEY = 'colombo-theme-mode'
+const STORAGE_KEY = 'flowup-theme-mode'
 
 export function ThemeProvider({ children }) {
   const [mode, setMode] = useState(() => localStorage.getItem(STORAGE_KEY) || 'light')

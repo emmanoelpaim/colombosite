@@ -115,7 +115,7 @@ export default function Servicos() {
                   </Typography>
                   <Button
                     variant="outlined"
-                    color="secondary"
+                    color="primary"
                     size="small"
                     onClick={(e) => { e.stopPropagation(); handleOpen(s); }}
                   >

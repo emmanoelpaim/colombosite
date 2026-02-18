@@ -80,7 +80,7 @@ export default function FaleConosco() {
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
                 <Email color="secondary" />
-                <Typography>contato@colombogrowthlab.com.br</Typography>
+                <Typography>contato@flowup.com.br</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
                 <LocationOn color="secondary" />
@@ -88,8 +88,8 @@ export default function FaleConosco() {
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Instagram color="secondary" />
-                <Link href="https://instagram.com/colombogrowthlab" target="_blank" rel="noopener noreferrer" color="text.secondary" underline="hover">
-                  @colombogrowthlab
+                <Link href="https://instagram.com/flowupdigital" target="_blank" rel="noopener noreferrer" color="text.secondary" underline="hover">
+                  @flowupdigital
                 </Link>
               </Box>
             </Paper>
@@ -117,7 +117,7 @@ export default function FaleConosco() {
                   </Grid>
                 )}
                 <Grid item xs={12}>
-                  <Button type="submit" variant="contained" size="large" disabled={enviando} sx={{ bgcolor: 'secondary.main', '&:hover': { bgcolor: 'secondary.dark' } }}>
+                  <Button type="submit" variant="contained" size="large" disabled={enviando} sx={{ bgcolor: 'primary.light', '&:hover': { bgcolor: 'primary.dark' } }}>
                     {enviando ? 'Enviando...' : 'Enviar mensagem'}
                   </Button>
                 </Grid>

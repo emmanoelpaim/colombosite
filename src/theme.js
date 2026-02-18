@@ -4,14 +4,14 @@ const getTheme = (mode) => createTheme({
   palette: {
     mode,
     primary: {
-      main: '#1B3F63',
-      dark: '#132d47',
-      light: '#2a5a8a',
+      main: '#235F45',
+      dark: '#1a4734',
+      light: '#2d7a5c',
     },
     secondary: {
-      main: '#2EC4B6',
-      dark: '#25a89d',
-      light: '#5dd4c9',
+      main: '#C7E1D1',
+      dark: '#a8d4be',
+      light: '#e0f0e8',
     },
     ...(mode === 'dark'
       ? {
@@ -22,7 +22,7 @@ const getTheme = (mode) => createTheme({
       }
       : {
         background: {
-          default: '#fafafa',
+          default: '#EAF3ED',
           paper: '#ffffff',
         },
       }),
@@ -48,7 +48,7 @@ const getTheme = (mode) => createTheme({
       styleOverrides: {
         root: {
           borderRadius: 12,
-          boxShadow: mode === 'dark' ? '0 4px 20px rgba(0,0,0,0.3)' : '0 4px 20px rgba(27, 63, 99, 0.08)',
+          boxShadow: mode === 'dark' ? '0 4px 20px rgba(0,0,0,0.3)' : '0 4px 20px rgba(35, 95, 69, 0.08)',
         },
       },
     },

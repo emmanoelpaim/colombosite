@@ -52,8 +52,8 @@ export default function Banner() {
         position: 'relative',
         overflow: 'hidden',
         backgroundImage: slide.image
-          ? `linear-gradient(135deg, ${alpha('#1B3F63', 0.88)} 0%, ${alpha('#1B3F63', 0.75)} 50%, ${alpha('#2EC4B6', 0.8)} 100%), url(${slide.image})`
-          : `linear-gradient(135deg, ${alpha('#1B3F63', 0.92)} 0%, ${alpha('#2EC4B6', 0.85)} 100%)`,
+          ? `linear-gradient(135deg, ${alpha('#235F45', 0.88)} 0%, ${alpha('#235F45', 0.75)} 50%, ${alpha('#C7E1D1', 0.8)} 100%), url(${slide.image})`
+          : `linear-gradient(135deg, ${alpha('#235F45', 0.92)} 0%, ${alpha('#C7E1D1', 0.85)} 100%)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}

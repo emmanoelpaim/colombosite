@@ -45,7 +45,7 @@ app.post('/api/contato', async (req, res, next) => {
       from: gmailUser,
       to: 'luu_colombo@hotmail.com',
       replyTo: emailS,
-      subject: 'Contato - Colombo Growth Lab',
+      subject: 'Contato - FlowUp',
       text: `Nome: ${nomeS}\nE-mail: ${emailS}\nTelefone: ${telefoneS}\n\nMensagem:\n${mensagemS}`,
       html: `<p><strong>Nome:</strong> ${nomeS}</p><p><strong>E-mail:</strong> ${emailS}</p><p><strong>Telefone:</strong> ${telefoneS}</p><p><strong>Mensagem:</strong></p><p>${mensagemS.replace(/\n/g, '<br>')}</p>`
     })

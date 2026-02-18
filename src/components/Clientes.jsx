@@ -9,7 +9,7 @@ import CardActionArea from '@mui/material/CardActionArea'
 const clientes = [
   {
     nome: 'Doce Lembrança',
-    depoimento: 'A Colombo Growth Lab transformou nossa presença digital. As vendas aumentaram muito e hoje conseguimos alcançar muito mais clientes.',
+    depoimento: 'A FlowUp transformou nossa presença digital. As vendas aumentaram muito e hoje conseguimos alcançar muito mais clientes.',
     handle: '@personalizadosdocelembranca',
     username: 'personalizadosdocelembranca',
     imgurl: 'img/doce.jpg',
@@ -25,7 +25,7 @@ const clientes = [
   },
   {
     nome: 'Cubo Play',
-    depoimento: 'A Colombo Growth Lab nos ajudou a fortalecer nossa presença nas redes e a alcançar mais famílias. Resultados que falam por si.',
+    depoimento: 'A FlowUp nos ajudou a fortalecer nossa presença nas redes e a alcançar mais famílias. Resultados que falam por si.',
     handle: '@cubo.play',
     username: 'cubo.play',
     imgurl: 'img/cubo.jpg',
@@ -33,7 +33,7 @@ const clientes = [
   },
   {
     nome: 'Realizar Financiamentos',
-    depoimento: 'Ganhamos credibilidade e visibilidade no digital. A estratégia da Colombo Growth Lab trouxe mais oportunidades e clientes qualificados.',
+    depoimento: 'Ganhamos credibilidade e visibilidade no digital. A estratégia da FlowUp trouxe mais oportunidades e clientes qualificados.',
     handle: '@realizarfinanciamentos',
     username: 'realizarfinanciamentos',
     imgurl: 'img/realizar.jpg',
@@ -57,7 +57,7 @@ export default function Clientes() {
           Nossos Clientes
         </Typography>
         <Typography variant="body1" align="center" color="text.secondary" sx={{ maxWidth: 560, mx: 'auto', mb: 4 }}>
-          Empresas que confiam na Colombo Growth Lab para crescer no digital.
+          Empresas que confiam na FlowUp para crescer no digital.
         </Typography>
         <Grid container spacing={3} justifyContent="center">
           {clientes.map((cliente, i) => (

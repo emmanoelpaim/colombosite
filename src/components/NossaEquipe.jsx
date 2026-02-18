@@ -60,7 +60,7 @@ export default function NossaEquipe() {
           Nossa Equipe
         </Typography>
         <Typography variant="body1" align="center" color="text.secondary" sx={{ maxWidth: 560, mx: 'auto', mb: 4 }}>
-          Pessoas que fazem a Colombo Growth Lab entregar resultados.
+          Pessoas que fazem a FlowUp entregar resultados.
         </Typography>
         <Grid container spacing={3} justifyContent="center">
           {team.map((p, i) => (
@@ -93,21 +93,19 @@ export default function NossaEquipe() {
                     {p.initials}
                   </Avatar>
                   <Typography variant="h6">{p.name}</Typography>
-                  <Typography variant="body2" color="secondary.main" sx={{ mb: 2 }}>
+                  <Typography variant="body2" color="primary.light" sx={{ mb: 2 }}>
                     {p.role}
                   </Typography>
                   <Button
                     variant="outlined"
-                    color="secondary"
+                    color="primary"
                     size="small"
-                    component="a"
-                    href={p.linkedIn}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setSelected(p)
+                    }}
                   >
                     Saiba mais
-
                   </Button>
                 </CardContent>
               </Card>
@@ -154,7 +152,7 @@ export default function NossaEquipe() {
                 {selected.initials}
               </Avatar>
               <Typography variant="h6">{selected.name}</Typography>
-              <Typography variant="body2" color="secondary.main" sx={{ mb: 2 }}>
+              <Typography variant="body2" color="primary.main" sx={{ mb: 2 }}>
                 {selected.role}
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'justify', mb: 1.5 }}>
@@ -165,7 +163,7 @@ export default function NossaEquipe() {
               </Typography>
               <Button
                 variant="outlined"
-                color="secondary"
+                color="primary"
                 size="small"
                 component="a"
                 href={selected.linkedIn}
