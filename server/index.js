@@ -18,6 +18,7 @@ app.use(express.json())
 const gmailUser = process.env.GMAIL_USER?.trim()
 const gmailPass = process.env.GMAIL_APP_PASSWORD?.replace(/\s/g, '')?.trim()
 const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY?.trim()
+const recaptchaMinScore = Number.parseFloat(process.env.RECAPTCHA_MIN_SCORE ?? '0.5')
 
 async function verificarRecaptcha(token) {
   if (!recaptchaSecret) return { ok: true }
@@ -33,8 +34,15 @@ async function verificarRecaptcha(token) {
     body: params
   })
   const data = await r.json()
-  if (data.success) return { ok: true }
-  return { ok: false, erro: 'reCAPTCHA inválido. Tente novamente.' }
+  if (!data.success) {
+    return { ok: false, erro: 'reCAPTCHA inválido. Tente novamente.' }
+  }
+  if (typeof data.score === 'number' && !Number.isNaN(recaptchaMinScore)) {
+    if (data.score < recaptchaMinScore) {
+      return { ok: false, erro: 'Não foi possível confirmar o envio. Tente novamente.' }
+    }
+  }
+  return { ok: true }
 }
 
 const transporter = nodemailer.createTransport({

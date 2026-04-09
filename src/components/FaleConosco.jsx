@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
+import { useState } from 'react'
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
@@ -22,7 +22,16 @@ function maskTelefone(value) {
   return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
 }
 
-const recaptchaSiteKey = import.meta.env.VITE_RECAPTCHA_SITE_KEY || ''
+function envRecaptchaSiteKey() {
+  const raw = import.meta.env.VITE_RECAPTCHA_SITE_KEY
+  if (raw == null || typeof raw !== 'string') return ''
+  let s = raw.trim()
+  if ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'"))) {
+    s = s.slice(1, -1).trim()
+  }
+  return s
+}
+
 const baseUrl = import.meta.env.BASE_URL
 
 function urlContato() {
@@ -31,8 +40,7 @@ function urlContato() {
   return '/api/contato'
 }
 
-export default function FaleConosco() {
-  const recaptchaRef = useRef(null)
+function FaleConoscoForm({ getRecaptchaToken }) {
   const [form, setForm] = useState({ nome: '', email: '', telefone: '', mensagem: '' })
   const [status, setStatus] = useState({ tipo: null, texto: '' })
   const [enviando, setEnviando] = useState(false)
@@ -50,10 +58,15 @@ export default function FaleConosco() {
     e.preventDefault()
     setStatus({ tipo: null, texto: '' })
     let recaptchaToken = ''
-    if (recaptchaSiteKey) {
-      recaptchaToken = recaptchaRef.current?.getValue() || ''
+    if (getRecaptchaToken) {
+      try {
+        const t = await getRecaptchaToken()
+        recaptchaToken = (t && String(t)) || ''
+      } catch {
+        recaptchaToken = ''
+      }
       if (!recaptchaToken) {
-        setStatus({ tipo: 'erro', texto: 'Confirme o reCAPTCHA antes de enviar.' })
+        setStatus({ tipo: 'erro', texto: 'Não foi possível validar o envio. Atualize a página e tente novamente.' })
         return
       }
     }
@@ -73,7 +86,6 @@ export default function FaleConosco() {
       if (data.ok) {
         setStatus({ tipo: 'sucesso', texto: 'Mensagem enviada com sucesso. Retornaremos em breve!' })
         setForm({ nome: '', email: '', telefone: '', mensagem: '' })
-        recaptchaRef.current?.reset()
       } else {
         setStatus({ tipo: 'erro', texto: data.erro || 'Erro ao enviar. Tente novamente.' })
       }
@@ -142,11 +154,6 @@ export default function FaleConosco() {
                 <Grid item xs={12}>
                   <TextField fullWidth label="Mensagem" name="mensagem" value={form.mensagem} onChange={handleChange} multiline rows={4} required />
                 </Grid>
-                {recaptchaSiteKey && (
-                  <Grid item xs={12}>
-                    <ReCAPTCHA ref={recaptchaRef} sitekey={recaptchaSiteKey} />
-                  </Grid>
-                )}
                 {status.texto && (
                   <Grid item xs={12}>
                     <Typography color={status.tipo === 'sucesso' ? 'success.main' : 'error.main'}>
@@ -158,6 +165,19 @@ export default function FaleConosco() {
                   <Button type="submit" variant="contained" size="large" disabled={enviando} sx={{ bgcolor: 'primary.light', '&:hover': { bgcolor: 'primary.dark' } }}>
                     {enviando ? 'Enviando...' : 'Enviar mensagem'}
                   </Button>
+                  {getRecaptchaToken && (
+                    <Typography variant="caption" component="p" color="text.secondary" sx={{ mt: 1.5, mb: 0 }}>
+                      Este site é protegido pelo reCAPTCHA e aplicam-se a{' '}
+                      <Link href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" color="inherit">
+                        Política de Privacidade
+                      </Link>
+                      {' '}e os{' '}
+                      <Link href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" color="inherit">
+                        Termos de Serviço
+                      </Link>
+                      {' '}do Google.
+                    </Typography>
+                  )}
                 </Grid>
               </Grid>
             </Paper>
@@ -166,4 +186,25 @@ export default function FaleConosco() {
       </Container>
     </Box>
   )
+}
+
+function FaleConoscoComRecaptcha() {
+  const { executeRecaptcha } = useGoogleReCaptcha()
+  return (
+    <FaleConoscoForm
+      getRecaptchaToken={() => executeRecaptcha('contato')}
+    />
+  )
+}
+
+export default function FaleConosco() {
+  const siteKey = envRecaptchaSiteKey()
+  if (siteKey) {
+    return (
+      <GoogleReCaptchaProvider reCaptchaKey={siteKey} scriptProps={{ async: true, defer: true }}>
+        <FaleConoscoComRecaptcha />
+      </GoogleReCaptchaProvider>
+    )
+  }
+  return <FaleConoscoForm />
 }

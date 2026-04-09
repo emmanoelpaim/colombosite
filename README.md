@@ -52,6 +52,13 @@ Essas variáveis são embutidas no JavaScript público no momento do `npm run bu
 
 Se `VITE_API_BASE_URL` estiver vazio no build, o formulário usa só `/api/contato` (útil no dev com proxy; no GitHub Pages isso **não** aponta para um servidor, então em produção preencha a URL real da API).
 
+### reCAPTCHA v3 no site publicado
+
+1. No [admin do reCAPTCHA](https://www.google.com/recaptcha/admin), crie uma chave do tipo **reCAPTCHA v3** e informe os **domínios** em que o site abre (ex.: `flowuphub.com.br`, `www.flowuphub.com.br`, `localhost` para testes).
+2. Em **Secrets** do GitHub, `VITE_RECAPTCHA_SITE_KEY` deve ser a **chave do site** (Site key), **não** a chave secreta. No servidor, `RECAPTCHA_SECRET_KEY` é a chave secreta correspondente ao mesmo par no Google.
+3. Após alterar o secret, faça um **novo deploy** (workflow com `npm run build`) para o bundle incluir a site key.
+4. O front usa `react-google-recaptcha-v3` (sem checkbox; o token é gerado ao enviar o formulário). No backend, `RECAPTCHA_MIN_SCORE` (padrão `0.5` em `server/.env.example`) define a nota mínima aceita na verificação.
+
 ### O que é só do servidor Node (`server/`)
 
 Estas variáveis **não** podem ser “buscadas” pelo navegador a partir do GitHub: são lidas pelo **Node** em `process.env` (arquivo `server/.env` na máquina do servidor ou variáveis no painel da hospedagem). Guardar no GitHub serve para **não versionar** e para você copiar os mesmos nomes ao configurar Railway, VPS, etc.
