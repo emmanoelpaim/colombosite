@@ -1,18 +1,18 @@
+import Email from '@mui/icons-material/Email'
+import Instagram from '@mui/icons-material/Instagram'
+import LinkIcon from '@mui/icons-material/Link'
+import LocationOn from '@mui/icons-material/LocationOn'
+import PolicyIcon from '@mui/icons-material/Policy'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Link from '@mui/material/Link'
+import Paper from '@mui/material/Paper'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
-import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
-import Link from '@mui/material/Link'
-import Instagram from '@mui/icons-material/Instagram'
-import Email from '@mui/icons-material/Email'
-import LocationOn from '@mui/icons-material/LocationOn'
-import LinkIcon from '@mui/icons-material/Link'
-import PolicyIcon from '@mui/icons-material/Policy'
 
 function maskTelefone(value) {
   const digits = value.replace(/\D/g, '').slice(0, 11)
@@ -152,7 +152,7 @@ function FaleConoscoForm({ getRecaptchaToken }) {
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
                 <Instagram color="secondary" />
-                <Link href="https://instagram.com/flowup.digital" target="_blank" rel="noopener noreferrer" color="text.secondary" underline="hover">
+                <Link href="https://instagram.com/flow.updigital" target="_blank" rel="noopener noreferrer" color="text.secondary" underline="hover">
                   @flowupdigital
                 </Link>
               </Box>
