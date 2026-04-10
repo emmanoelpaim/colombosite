@@ -14,10 +14,5 @@ export default defineConfig({
         copyFileSync(resolve(outDir, 'index.html'), resolve(outDir, '404.html'))
       }
     }
-  ],
-  server: {
-    proxy: {
-      '/api': { target: 'http://localhost:3001', changeOrigin: true }
-    }
-  }
+  ]
 })

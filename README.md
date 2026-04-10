@@ -24,10 +24,18 @@ npm run dev
 
 Crie um **`.env`** na raiz (não versionado), copiando de `.env.example`:
 
-- `VITE_RECAPTCHA_SITE_KEY` — chave **site** do reCAPTCHA (Google).
-- `VITE_API_BASE_URL` — opcional no dev; se vazio, o Vite encaminha `/api` para `localhost:3001` (veja `vite.config.js`).
+- `VITE_RECAPTCHA_SITE_KEY` — chave **site** do reCAPTCHA v3 (Google).
+- `VITE_API_BASE_URL` — opcional; o padrão no código é `https://inglesback.squareweb.app`.
 
 **Não commite o `.env`.**
+
+## Formulário de contato (API externa)
+
+O front envia **POST** para `{VITE_API_BASE_URL ou padrão}/api/contact/sendmail` com JSON:
+
+`name`, `email`, `phone`, `message`, `recaptchaToken`.
+
+A validação do reCAPTCHA e o envio de e-mail ficam no backend hospedado (ex.: Square Cloud).
 
 ## Build
 
@@ -37,49 +45,17 @@ npm run build
 
 ## Variáveis no GitHub (produção)
 
-**Não coloque valores sensíveis no repositório.** Use **Settings** → **Environments** → **github-pages** → **Add environment secret** ou **Add environment variable**.
+**Settings** → **Environments** → **github-pages** → secrets ou variables.
 
-O workflow `.github/workflows/ci.yml` lê `secrets.*` e, se vazio, `vars.*` com o **mesmo nome**.
+O workflow injeta no build: `VITE_RECAPTCHA_SITE_KEY` e opcionalmente `VITE_API_BASE_URL` (se omitir, usa o padrão `https://inglesback.squareweb.app`).
 
-### O que entra no site (build do Vite)
+### reCAPTCHA v3
 
-Essas variáveis são embutidas no JavaScript público no momento do `npm run build` no GitHub Actions:
-
-| Nome | Uso |
-|------|-----|
-| `VITE_RECAPTCHA_SITE_KEY` | Widget reCAPTCHA no formulário |
-| `VITE_API_BASE_URL` | URL base da API de contato (ex. `https://api.seudominio.com`, **sem** barra no final). O front chama `POST {VITE_API_BASE_URL}/api/contato`. |
-
-Se `VITE_API_BASE_URL` estiver vazio no build, o formulário usa só `/api/contato` (útil no dev com proxy; no GitHub Pages isso **não** aponta para um servidor, então em produção preencha a URL real da API).
-
-### reCAPTCHA v3 no site publicado
-
-1. No [admin do reCAPTCHA](https://www.google.com/recaptcha/admin), crie uma chave do tipo **reCAPTCHA v3** e informe os **domínios** em que o site abre (ex.: `flowuphub.com.br`, `www.flowuphub.com.br`, `localhost` para testes).
-2. Em **Secrets** do GitHub, `VITE_RECAPTCHA_SITE_KEY` deve ser a **chave do site** (Site key), **não** a chave secreta. No servidor, `RECAPTCHA_SECRET_KEY` é a chave secreta correspondente ao mesmo par no Google.
-3. Após alterar o secret, faça um **novo deploy** (workflow com `npm run build`) para o bundle incluir a site key.
-4. O front usa `react-google-recaptcha-v3` (sem checkbox; o token é gerado ao enviar o formulário). No backend, `RECAPTCHA_MIN_SCORE` (padrão `0.5` em `server/.env.example`) define a nota mínima aceita na verificação.
-
-### O que é só do servidor Node (`server/`)
-
-Estas variáveis **não** podem ser “buscadas” pelo navegador a partir do GitHub: são lidas pelo **Node** em `process.env` (arquivo `server/.env` na máquina do servidor ou variáveis no painel da hospedagem). Guardar no GitHub serve para **não versionar** e para você copiar os mesmos nomes ao configurar Railway, VPS, etc.
-
-| Nome (igual em `server/.env.example`) | Onde usar |
-|----------------------------------------|-----------|
-| `PORT` | Porta do Express na hospedagem |
-| `GMAIL_USER` | Conta Gmail do envio |
-| `GMAIL_APP_PASSWORD` | Senha de app do Gmail |
-| `RECAPTCHA_SECRET_KEY` | Chave **secreta** do reCAPTCHA (validação no backend) |
-
-O GitHub Pages **não executa** esse servidor. Você precisa de um host separado para `server/index.js` e aí define essas variáveis **lá** (com os mesmos valores que salvou como secrets no GitHub, se quiser centralizar a referência no GitHub).
-
-### Resumo
-
-1. No ambiente **github-pages**, cadastre as `VITE_*` para o build do site.
-2. Cadastre também `GMAIL_*`, `RECAPTCHA_SECRET_KEY` e `PORT` como **secrets** no GitHub se quiser manter tudo documentado no repositório sem arquivo `.env` no código; na prática o **servidor** só enxerga essas chaves onde o Node rodar (painel do provedor ou `server/.env` no servidor).
-3. Novo push na `main`/`master` (ou rodar o workflow) para publicar o site com as `VITE_*` atualizadas.
+1. Chave criada no [admin do reCAPTCHA](https://www.google.com/recaptcha/admin) como **v3**, com os **domínios** do site (e `localhost` para testes).
+2. `VITE_RECAPTCHA_SITE_KEY` = chave do site (pública). A chave secreta fica só no backend da API.
 
 ## Hospedagem no GitHub Pages (Actions)
 
-1. Código na branch `main` ou `master`.
-2. Variáveis de build configuradas no ambiente **github-pages**.
-3. **Settings** → **Pages** com origem **GitHub Actions**.
+1. Branch `main` ou `master`.
+2. Workflow `.github/workflows/ci.yml` publica o `dist`.
+3. **Settings** → **Pages** → origem **GitHub Actions**.

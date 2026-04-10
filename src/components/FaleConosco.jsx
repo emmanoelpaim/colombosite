@@ -34,10 +34,25 @@ function envRecaptchaSiteKey() {
 
 const baseUrl = import.meta.env.BASE_URL
 
+const DEFAULT_API_BASE = 'https://inglesback.squareweb.app'
+
+function apiBaseUrl() {
+  const env = (import.meta.env.VITE_API_BASE_URL || '').trim().replace(/\/$/, '')
+  return env || DEFAULT_API_BASE
+}
+
 function urlContato() {
-  const base = (import.meta.env.VITE_API_BASE_URL || '').trim().replace(/\/$/, '')
-  if (base) return `${base}/api/contato`
-  return '/api/contato'
+  return `${apiBaseUrl()}/api/contact/sendmail`
+}
+
+function corpoEnvioContato(form, recaptchaToken) {
+  return {
+    name: form.nome,
+    email: form.email,
+    phone: form.telefone,
+    message: form.mensagem,
+    recaptchaToken
+  }
 }
 
 function FaleConoscoForm({ getRecaptchaToken }) {
@@ -75,30 +90,38 @@ function FaleConoscoForm({ getRecaptchaToken }) {
       const res = await fetch(urlContato(), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, recaptchaToken })
+        body: JSON.stringify(corpoEnvioContato(form, recaptchaToken))
       })
       let data
       try {
         data = await res.json()
       } catch {
-        data = { ok: false, erro: 'Erro ao processar resposta do servidor.' }
+        data = {}
       }
-      if (data.ok) {
-        setStatus({ tipo: 'sucesso', texto: 'Mensagem enviada com sucesso. Retornaremos em breve!' })
-        setForm({ nome: '', email: '', telefone: '', mensagem: '' })
-      } else {
-        setStatus({ tipo: 'erro', texto: data.erro || 'Erro ao enviar. Tente novamente.' })
+      const msgErro = data.erro || data.error
+      const msgInfo = typeof data.message === 'string' ? data.message : ''
+      if (!res.ok) {
+        const t = typeof msgErro === 'string' && msgErro.length > 0
+          ? msgErro
+          : (msgInfo || `Não foi possível enviar (${res.status}).`)
+        setStatus({ tipo: 'erro', texto: t })
+        return
       }
+      if (data.ok === false || data.success === false) {
+        setStatus({
+          tipo: 'erro',
+          texto: (typeof msgErro === 'string' && msgErro.length > 0) ? msgErro : (msgInfo || 'Erro ao enviar. Tente novamente.')
+        })
+        return
+      }
+      if (msgErro && data.ok !== true && data.success !== true) {
+        setStatus({ tipo: 'erro', texto: typeof msgErro === 'string' ? msgErro : 'Erro ao enviar.' })
+        return
+      }
+      setStatus({ tipo: 'sucesso', texto: 'Mensagem enviada com sucesso. Retornaremos em breve!' })
+      setForm({ nome: '', email: '', telefone: '', mensagem: '' })
     } catch {
-      const apiUrl = (import.meta.env.VITE_API_BASE_URL || '').trim()
-      const prod = import.meta.env.PROD
-      let msg = 'Não foi possível conectar à API. Verifique se o backend está no ar, se a URL está correta (HTTPS) e se o domínio do site está liberado no servidor.'
-      if (prod && !apiUrl) {
-        msg = 'O formulário precisa da URL da API no build. No GitHub, defina VITE_API_BASE_URL (ex.: https://api.seudominio.com) no ambiente do workflow e faça um novo deploy.'
-      } else if (!prod && !apiUrl) {
-        msg = 'Servidor local não respondeu. Na pasta do projeto, rode npm run start (front + API) ou em outro terminal: cd server && npm start (porta 3001).'
-      }
-      setStatus({ tipo: 'erro', texto: msg })
+      setStatus({ tipo: 'erro', texto: 'Não foi possível conectar à API. Verifique sua rede ou tente mais tarde.' })
     } finally {
       setEnviando(false)
     }
