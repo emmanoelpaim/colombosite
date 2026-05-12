@@ -11,11 +11,19 @@ import LgpdPage from './components/LgpdPage'
 import RegulamentoIndiqueGanhe from './components/RegulamentoIndiqueGanhe'
 import CookieConsentBanner from './components/CookieConsentBanner'
 import SiteNav from './components/SiteNav'
+import PortfolioPage from './components/PortfolioPage'
+
+function portfolioSlugFromPath() {
+  const normalized = window.location.pathname.replace(/\/+$/, '') || '/'
+  const match = normalized.match(/\/portifolio\/([^/]+)$/i)
+  return match ? decodeURIComponent(match[1]).toLowerCase() : null
+}
 
 export default function App() {
   const isLinkTreePage = window.location.pathname.endsWith('/linktree')
   const isLgpdPage = window.location.pathname.endsWith('/lgpd')
   const isRegulamentoIndiqueGanhe = window.location.pathname.endsWith('/regulamento-indique-ganhe')
+  const portfolioSlug = portfolioSlugFromPath()
 
   return (
     <>
@@ -26,6 +34,8 @@ export default function App() {
         <LgpdPage />
       ) : isRegulamentoIndiqueGanhe ? (
         <RegulamentoIndiqueGanhe />
+      ) : portfolioSlug ? (
+        <PortfolioPage slug={portfolioSlug} />
       ) : (
         <main>
           <section id="banner">

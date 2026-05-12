@@ -1,0 +1,22 @@
+---
+description: Arquitetura atual do site e padrões de produto/entrega
+alwaysApply: true
+---
+
+# Arquitetura do repositório (realidade)
+
+- **Stack:** SPA **React 18** com **Vite 5**, **JavaScript (ES modules)** e **MUI v5** + Emotion.
+- **Organização:** componentes de página/seção em `src/components/`, dados estáticos em `src/data/`, tema em `src/theme.js`, modo escuro via `ThemeContext.jsx`.
+- **Navegação:** sem React Router; rotas especiais por **`window.location.pathname`** em `App.jsx` (ex.: `/linktree`, `/portifolio/:slug`), SPA compatível com GitHub Pages (`404.html` gerado no build).
+- **CI/CD:** GitHub Actions (`.github/workflows/ci.yml`) — `npm ci`, `npm run build`, artefato e deploy em **GitHub Pages** na branch `main`/`master`.
+- **Testes:** não há suite configurada no `package.json` hoje; adicionar testes exige decisão de ferramenta (ex. Vitest) e escopo.
+
+# Padrões obrigatórios do projeto (site FlowUp)
+
+- **Novas features:** preferir componentes coesos e, quando houver lógica reutilizável, extrair para hooks ou módulos em `src/`; manter consistência com o estilo existente (MUI, `sx`, imports já usados no projeto). Este repositório **não** adota Clean Architecture nem MVVM por camadas — evite impor esse modelo literalmente aqui.
+- **Testes:** ao introduzir regras de negócio ou utilitários não triviais, incluir **testes unitários** (após configurar o runner) para fluxos críticos e estados derivados.
+- **CI/CD:** alterações que quebrem `npm run build` são inaceitáveis; manter o pipeline de build (e deploy, quando aplicável) verde.
+- **Analytics / crash:** **Firebase Analytics e Crashlytics não fazem parte do stack web atual.** Não adicionar de surpresa; só com decisão explícita do produto e dependências novas.
+- **Dark mode:** suporte via tema MUI + `ThemeContext`; novas telas devem respeitar **modo claro/escuro** com contraste e estados de foco acessíveis.
+- **Feature flags:** não há infraestrutura atual; rollout gradual só com decisão e implementação explícitas (ex. variável de ambiente + build).
+- **UI:** manter interface **polida e consistente** com o design system já usado (tipografia Montserrat/Inter, paleta primária/secundária do `theme.js`).
